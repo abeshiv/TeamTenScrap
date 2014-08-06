@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using AutoMapper;
 
 namespace miVacationSurfer.Controllers
 {
@@ -14,8 +15,7 @@ namespace miVacationSurfer.Controllers
         // GET: ReviewViewModel
         public ActionResult Index()
         {
-            ReviewViewModel rvm = new ReviewViewModel();
-            //rvm.Regions = (from r in db.Regions)
+           
             return View();
         }
 
@@ -38,24 +38,20 @@ namespace miVacationSurfer.Controllers
 
         // POST: ReviewViewModel/Create
         [HttpPost]
-        public ActionResult CreateReview(int id)
+        public ActionResult CreateReview(miVacationSurfer.LocationReview model)
         {
-            return View();
-        
+           return View();
         }
 
         public PartialViewResult AddLocationReview(int id)
         {
-            //var locationmodel = (from l in db.Locations where l.Id == id select l) as LocationReview;
+            
             TempData["LocationId"] = id;
             TempData.Keep();
             return PartialView("_LocationReview");
         }
 
-        //public ActionResult AddStep()
-        //{
-        //    return View("_RSEditor", new RecipeStep());
-        //}
+        
 
         // GET: ReviewViewModel/Edit/5
         public ActionResult Edit(int id)

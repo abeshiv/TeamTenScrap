@@ -24,5 +24,6 @@ namespace miVacationSurfer
 
         public virtual Activity Activity { get; set; }
         public virtual List<Season> Seasons { get; set; }
+        public virtual List<ActivityType> ActivityTypes { get; set; }
     }
 }

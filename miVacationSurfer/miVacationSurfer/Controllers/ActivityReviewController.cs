@@ -39,11 +39,31 @@ namespace miVacationSurfer.Controllers
         // GET: ActivityReview/Create
         public ActionResult Create()
         {
+            SelectList activityTypes = new SelectList(db.ActivityTypes, "Id", "ActivityTypeName");
+            ViewData["activityTypes"] = activityTypes;
 
-
-            SelectList seasons = new SelectList(db.Seasons, "Id", "SeasonName");
-            ViewData["seasons"] = seasons;
+            //SelectList seasons = new SelectList(db.Seasons, "Id", "SeasonName");
+            //ViewData["seasons"] = seasons;
+            
             return View();
+        }
+
+        [HttpPost]
+        public JsonResult GetSeasons( int activitytypeId)
+        {
+            List<SelectListItem> activityTypeSeasons = new List<SelectListItem>();
+            var activityTypeList =
+                 from a in db.ActivityTypeSeasons
+                 where a.ActivityTypeId == activitytypeId
+                 select a;
+
+            foreach (var item in activityTypeList)
+            {
+                activityTypeSeasons.Add(new SelectListItem { Text = item.Season.SeasonName, Value = item.Season.Id.ToString() });
+            }
+
+
+            return Json(activityTypeSeasons);
         }
 
         [HttpPost]
@@ -51,28 +71,29 @@ namespace miVacationSurfer.Controllers
         {
             //var seasonActivityId = -1;
             //int.TryParse(seasonId, out seasonActivityId);
-
             List<SelectListItem> seasonActivitys = new List<SelectListItem>();
             var seasonList =
                  from r in db.SeasonActivities
                  where r.SeasonId == seasonId
                  select r;
-                 
+
             foreach (var item in seasonList)
             {
                 seasonActivitys.Add(new SelectListItem { Text = item.Activity.ActivityName, Value = item.Activity.Id.ToString() });
             }
-                 
 
+          
             return Json(seasonActivitys);
         }
+
+       
 
         // POST: ActivityReview/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,ActivityRating,ActivityDate,ActivityPro,ActivityCon,ActivityReviewDetails,ActivityId")] ActivityReview activityReview)
+        public ActionResult Create([Bind(Include = "Id,ActivityRating,ActivityDate,ActivityPro,ActivityCon,ActivityReviewDetails,ActivityId")] ActivityReview activityReview, int activityId)
         {
             if (ModelState.IsValid)
             {
@@ -81,7 +102,7 @@ namespace miVacationSurfer.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ActivityId = new SelectList(db.Activities, "Id", "ActivityName", activityReview.ActivityId);
+            //ViewBag.ActivityId = new SelectList(db.Activities, "Id", "ActivityName", activityReview.ActivityId);
             return View(activityReview);
         }
 

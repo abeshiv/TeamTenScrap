@@ -11,7 +11,7 @@ namespace miVacationSurfer
 {
     using System;
     using System.Collections.Generic;
-    
+
     public partial class ActivityReview
     {
         public int Id { get; set; }
@@ -21,7 +21,8 @@ namespace miVacationSurfer
         public string ActivityCon { get; set; }
         public string ActivityReviewDetails { get; set; }
         public int ActivityId { get; set; }
-    
+
         public virtual Activity Activity { get; set; }
+        public virtual List<Season> Seasons { get; set; }
     }
 }

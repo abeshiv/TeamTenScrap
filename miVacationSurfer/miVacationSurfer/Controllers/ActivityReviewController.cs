@@ -39,8 +39,32 @@ namespace miVacationSurfer.Controllers
         // GET: ActivityReview/Create
         public ActionResult Create()
         {
-            ViewBag.ActivityId = new SelectList(db.Activities, "Id", "ActivityName");
+
+
+            SelectList seasons = new SelectList(db.Seasons, "Id", "SeasonName");
+            ViewData["seasons"] = seasons;
             return View();
+        }
+
+        [HttpPost]
+        public JsonResult GetActivitys(int seasonId)
+        {
+            //var seasonActivityId = -1;
+            //int.TryParse(seasonId, out seasonActivityId);
+
+            List<SelectListItem> seasonActivitys = new List<SelectListItem>();
+            var seasonList =
+                 from r in db.SeasonActivities
+                 where r.SeasonId == seasonId
+                 select r;
+                 
+            foreach (var item in seasonList)
+            {
+                seasonActivitys.Add(new SelectListItem { Text = item.Activity.ActivityName, Value = item.Activity.Id.ToString() });
+            }
+                 
+
+            return Json(seasonActivitys);
         }
 
         // POST: ActivityReview/Create

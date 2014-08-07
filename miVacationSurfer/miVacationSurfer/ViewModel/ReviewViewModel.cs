@@ -10,7 +10,7 @@ namespace miVacationSurfer.ViewModel
 {
     public class ReviewViewModel
     {
-        miVacationSurfer.Region region = new miVacationSurfer.Region();
+        //miVacationSurfer.Region region = new miVacationSurfer.Region();
 
         public virtual ICollection<Region> Regions { get; set; }
         public virtual ICollection<Location> Locations { get; set; }

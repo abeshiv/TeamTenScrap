@@ -100,11 +100,29 @@ namespace miVacationSurfer.Controllers
         }
 
         // GET: LocationReview/Create
-        public ActionResult Create(int Id)
+        public ActionResult Create()
         {
-            ViewBag.LocationId = new SelectList(db.Locations, "Id", "LocationName");
+            SelectList regions = new SelectList(db.Regions, "Id", "RegionName");
+            ViewData["regions"] = regions;
             return View();
         }
+
+        [HttpPost]
+        public JsonResult GetLocations(string regionId)
+                {
+                    var regionLocationId = -1;
+                    int.TryParse(regionId, out regionLocationId);
+                 
+                    List<SelectListItem> regionLocations = new List<SelectListItem>();
+                    regionLocations =
+                        (from r in db.Locations
+                         where r.RegionId == regionLocationId
+                         select new { r.LocationName, r.Id }).ToList()
+                         .Select(a => new SelectListItem{Text = a.LocationName, Value = a.Id.ToString()}).ToList();
+                         
+            return Json(regionLocations);
+        }
+        
 
         // POST: LocationReview/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 

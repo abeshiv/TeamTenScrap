@@ -28,6 +28,7 @@ namespace miVacationSurfer.Controllers
         // GET: ReviewViewModel/Create
         public ActionResult CreateReview()
         {
+
             ViewBag.Region = new SelectList(db.Regions, "Id", "RegionName");
             ViewBag.Location = new SelectList(db.Locations, "Id", "LocationName");
             ViewBag.ActivityType = new SelectList(db.ActivityTypes, "Id", "ActivityTypeName");
@@ -40,7 +41,12 @@ namespace miVacationSurfer.Controllers
         [HttpPost]
         public ActionResult CreateReview(miVacationSurfer.LocationReview model)
         {
-           return View();
+            //ViewBag.Region = new SelectList(db.Regions, "Id", "RegionName");
+            //ViewBag.Location = new SelectList(db.Locations, "Id", "LocationName");
+            //ViewBag.ActivityType = new SelectList(db.ActivityTypes, "Id", "ActivityTypeName");
+            //ViewBag.Season = new SelectList(db.Seasons, "Id", "SeasonName");
+            //ViewBag.Activity = new SelectList(db.Activities, "Id", "ActivityName");
+            return View();
         }
 
         public PartialViewResult AddLocationReview(int id)
@@ -51,7 +57,7 @@ namespace miVacationSurfer.Controllers
             return PartialView("_LocationReview");
         }
 
-        
+    
 
         // GET: ReviewViewModel/Edit/5
         public ActionResult Edit(int id)

@@ -6,6 +6,7 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/bootstrap")
 
     <script language="JavaScript1.3" type="text/javascript"
             src="~/Scripts/jse_form.js"></script>
@@ -16,6 +17,10 @@
             src="~/Scripts/jse_search.js"></script>
     @RenderSection("Result", required: false)
 
+   
+
+    @*<script language="JavaScript1.3" src="~/Scripts/bootstrap-rating-input.min.js" type="text/javascript"></script>*@
+    
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">

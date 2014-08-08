@@ -7,6 +7,9 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using miVacationSurfer;
+using System.Web.Services;
+using System.Configuration;
+using System.Data.SqlClient;
 
 namespace miVacationSurfer.Controllers
 {
@@ -127,6 +130,8 @@ namespace miVacationSurfer.Controllers
                          
             return Json(regionLocations);
         }
+
+
         
 
         // POST: LocationReview/Create

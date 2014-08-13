@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
 using miVacationSurfer;
 
 namespace miVacationSurfer.Controllers
@@ -15,10 +16,66 @@ namespace miVacationSurfer.Controllers
         private miVacationSurferEntities db = new miVacationSurferEntities();
 
         // GET: ActivityReview
-        public ActionResult Index()
+        public ActionResult Index(string currentFilter, string sortOrder, string searchString, int? page)
         {
+            
+            ViewBag.RatingSortParm = String.IsNullOrEmpty(sortOrder) ? "rating_desc" : "";
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+            ViewBag.ActivitySortParm = String.IsNullOrEmpty(sortOrder) ? "activity_desc" : "";
+          
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
             var activityReviews = db.ActivityReviews.Include(a => a.Activity);
-            return View(activityReviews.ToList());
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+
+                DateTime temp;
+                if (DateTime.TryParse(searchString, out temp))
+                {
+
+                }
+
+                int tempRating;
+                if (Int32.TryParse(searchString, out tempRating)) { }
+
+                activityReviews = activityReviews.Where(s => ((s.ActivityRating >= 1 || s.ActivityRating <= 5) && (s.ActivityRating == tempRating))
+                    || (temp != null && (s.ActivityDate >= temp && s.ActivityDate <= temp))
+                    || s.ActivityPro.Contains(searchString)
+                    || s.ActivityCon.Contains(searchString)
+                    || s.ActivityReviewDetails.Contains(searchString)
+                    || s.Activity.ActivityName.Contains(searchString));
+            }
+
+            switch (sortOrder)
+            {
+                case "rating_desc":
+                    activityReviews = activityReviews.OrderByDescending(s => s.ActivityRating);
+                    break;
+
+                case "Date":
+                    activityReviews = activityReviews.OrderBy(s => s.ActivityDate);
+                    break;
+
+                case "activity_desc":
+                    activityReviews = activityReviews.OrderBy(s => s.Activity.ActivityName);
+                    break;
+
+                default:
+                    activityReviews = activityReviews.OrderBy(s => s.ActivityRating);
+                    break;
+            }
+                        int pageSize = 5;
+            int pageNumber = (page ?? 1);
+            return View(activityReviews.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: ActivityReview/Details/5
@@ -33,6 +90,8 @@ namespace miVacationSurfer.Controllers
             {
                 return HttpNotFound();
             }
+
+
             return View(activityReview);
         }
 
@@ -155,6 +214,7 @@ namespace miVacationSurfer.Controllers
         }
 
         // POST: ActivityReview/Delete/5
+        [Authorize(Users = "team10@team10.com")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using AutoMapper;
 
 namespace miVacationSurfer.Controllers
 {
@@ -15,7 +14,8 @@ namespace miVacationSurfer.Controllers
         // GET: ReviewViewModel
         public ActionResult Index()
         {
-           
+            ReviewViewModel rvm = new ReviewViewModel();
+            //rvm.Regions = (from r in db.Regions)
             return View();
         }
 
@@ -28,7 +28,6 @@ namespace miVacationSurfer.Controllers
         // GET: ReviewViewModel/Create
         public ActionResult CreateReview()
         {
-
             ViewBag.Region = new SelectList(db.Regions, "Id", "RegionName");
             ViewBag.Location = new SelectList(db.Locations, "Id", "LocationName");
             ViewBag.ActivityType = new SelectList(db.ActivityTypes, "Id", "ActivityTypeName");
@@ -39,25 +38,24 @@ namespace miVacationSurfer.Controllers
 
         // POST: ReviewViewModel/Create
         [HttpPost]
-        public ActionResult CreateReview(miVacationSurfer.LocationReview model)
+        public ActionResult CreateReview(int id)
         {
-            //ViewBag.Region = new SelectList(db.Regions, "Id", "RegionName");
-            //ViewBag.Location = new SelectList(db.Locations, "Id", "LocationName");
-            //ViewBag.ActivityType = new SelectList(db.ActivityTypes, "Id", "ActivityTypeName");
-            //ViewBag.Season = new SelectList(db.Seasons, "Id", "SeasonName");
-            //ViewBag.Activity = new SelectList(db.Activities, "Id", "ActivityName");
             return View();
+        
         }
 
         public PartialViewResult AddLocationReview(int id)
         {
-            
+            //var locationmodel = (from l in db.Locations where l.Id == id select l) as LocationReview;
             TempData["LocationId"] = id;
             TempData.Keep();
             return PartialView("_LocationReview");
         }
 
-    
+        //public ActionResult AddStep()
+        //{
+        //    return View("_RSEditor", new RecipeStep());
+        //}
 
         // GET: ReviewViewModel/Edit/5
         public ActionResult Edit(int id)

@@ -308,9 +308,12 @@ th {
 }
 .glyphicon-star:before {
   content: "\e006";
+  color: darkgoldenrod;
+  font-size: xx-large;
 }
 .glyphicon-star-empty:before {
   content: "\e007";
+  font-size: xx-large;
 }
 .glyphicon-user:before {
   content: "\e008";
@@ -953,6 +956,7 @@ img {
 .img-circle {
   border-radius: 50%;
 }
+
 hr {
   margin-top: 22px;
   margin-bottom: 22px;
@@ -2730,6 +2734,7 @@ select[multiple].input-lg {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  
 }
 .btn:focus,
 .btn:active:focus,
@@ -4589,7 +4594,7 @@ a.list-group-item.active > .badge,
 a.thumbnail:hover,
 a.thumbnail:focus,
 a.thumbnail.active {
-  border-color: #4582ec;
+  border-color: dimgray;
 }
 .thumbnail .caption {
   padding: 9px;

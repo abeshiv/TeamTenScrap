@@ -54,6 +54,12 @@
       <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -190,6 +196,7 @@
     <Compile Include="Controllers\LocationController.cs" />
     <Compile Include="Controllers\LocationReviewController.cs" />
     <Compile Include="Controllers\RegionController.cs" />
+    <Compile Include="Controllers\ReviewViewModelController.cs" />
     <Compile Include="Controllers\SeasonActivityController.cs" />
     <Compile Include="Controllers\SeasonController.cs" />
     <Compile Include="Global.asax.cs">
@@ -240,9 +247,33 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\delete.gif" />
-    <Content Include="Content\rateit.css" />
-    <Content Include="Content\star.gif" />
+    <Content Include="Content\jquery.bxslider.css" />
+    <Content Include="Content\jquery.bxslider.js" />
+    <Content Include="Content\jquery.bxslider.min.js" />
+    <Content Include="Content\PagedList.css" />
+    <Content Include="Content\Pictures\8615718622_c6d065d57a_k.jpg" />
+    <Content Include="Content\Pictures\A.jpg" />
+    <Content Include="Content\Pictures\AR.jpg" />
+    <Content Include="Content\Pictures\ash.JPG" />
+    <Content Include="Content\Pictures\explore-slider.jpg" />
+    <Content Include="Content\Pictures\github.png" />
+    <Content Include="Content\Pictures\kyl.JPG" />
+    <Content Include="Content\Pictures\L.jpg" />
+    <Content Include="Content\Pictures\lake.jpg" />
+    <Content Include="Content\Pictures\linkedin.png" />
+    <Content Include="Content\Pictures\location.jpg" />
+    <Content Include="Content\Pictures\logo2.png" />
+    <Content Include="Content\Pictures\LS.jpg" />
+    <Content Include="Content\Pictures\mackinaw.jpg" />
+    <Content Include="Content\Pictures\MiVacationSurfer.png" />
+    <Content Include="Content\Pictures\rate-slider.jpg" />
+    <Content Include="Content\Pictures\rate.jpg" />
+    <Content Include="Content\Pictures\search.jpg" />
+    <Content Include="Content\Pictures\ski.jpg" />
+    <Content Include="Content\Pictures\ste.jpg" />
+    <Content Include="Content\Pictures\VacationSurfer.jpg" />
+    <Content Include="Content\Pictures\van.JPG" />
+    <Content Include="Content\showtime.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -270,20 +301,21 @@
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
-    <Content Include="Scripts\jquery.rateit.js" />
-    <Content Include="Scripts\jquery.rateit.min.js" />
-    <Content Include="Scripts\jquery.rateit.min.js.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Content\jquery.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\jse_form.js" />
-    <Content Include="Scripts\jse_search.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Content\slider.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Content\Pictures\Flower.jpg" />
+    <Content Include="Content\Pictures\Snowflake.jpg" />
+    <Content Include="Content\Pictures\Sun.jpg" />
+    <Content Include="Content\Pictures\Tree.jpg" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -368,8 +400,8 @@
     <Content Include="Views\SeasonActivity\Index.cshtml" />
     <Content Include="Views\ReviewViewModel\CreateReview.cshtml" />
     <Content Include="Views\Shared\_LocationReview.cshtml" />
-    <Content Include="Views\LocationSearch.cshtml" />
-    <Content Include="Views\LocationReview\Results.cshtml" />
+    <Content Include="Views\Home\ChooseReview.cshtml" />
+    <Content Include="Views\Home\ChooseVacation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

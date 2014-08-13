@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/showtime.css")
+    @Scripts.Render("~/Content/jquery.js")
+    @Scripts.Render("~/Content/slider.js")
+
+    <script language="JavaScript1.3" type="text/javascript"
+            src="~/Scripts/jse_form.js"></script>
+    @RenderSection("Search", required: false)
+
+    <script language="JavaScript1.3" type="text/javascript"
+            src="~/Scripts/jse_search.js"></script>
+    @RenderSection("Result", required: false)
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                @*<img src="~/Content/Pictures/VactaionSurfer.jpg"/>*@
+
+                @Html.ActionLink("MI Vacation Surfer", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    @*<li>@Html.ActionLink("Home", "Index", "Home")</li>*@
+                    <li>@Html.ActionLink("Create a Review", "ChooseReview", "Home")</li>
+                    <li>@Html.ActionLink("Find a Vacation","ChooseVacation","Home")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    @*<li>@Html.ActionLink("Locations", "Index", "Location")</li>
+                    <li>@Html.ActionLink("Location Review", "Index", "LocationReview")</li>
+                    <li>@Html.ActionLink("Activities", "Index", "Activity")</li>
+                    <li>@Html.ActionLink("Activity Reviews", "Index", "ActivityReview")</li>*@
+                    <li>@section Search
+{
+    <script language="JavaScript1.3" type="text/javascript"
+            src="~/Scripts/jse_form.js"></script>
+                    }
+
+
+
+                    <form name="jse_Form">
+                        <input type="text" name="d">
+                        <input type="button" value="Go" onclick="search_form(jse_Form)">
+                    </form></li>
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <br><br><br>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

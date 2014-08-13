@@ -1,31 +1,22 @@
 ﻿@model IEnumerable<miVacationSurfer.LocationReview>
 
 @{
-    ViewBag.Title = "Results";
+    ViewBag.Title = "LocationReview";
 }
 
-<h2>Results</h2>
+<h2>Location Review</h2>
 @section Search
 {
     <script language="JavaScript1.3" type="text/javascript"
             src="~/Scripts/jse_form.js"></script>
 }
-@section Result
-{
-<script language="JavaScript1.3" type="text/javascript"
-        src="~/Scripts/jse_search.js"></script>
-}
+
+
+
 <form name="jse_Form">
     <input type="text" name="d">
     <input type="button" value="Go" onclick="search_form(jse_Form)">
 </form>
-<script language="JavaScript1.3" type="text/javascript">
-out_jse()
-</script>
-
-
-
-
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -33,22 +24,22 @@ out_jse()
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.LocationRating)
+            @Html.ActionLink("Rating", "Index", new { sortOrder = ViewBag.RatingSortParm})
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.LocationDate)
+            @Html.ActionLink("Date", "Index", new { sortOrder = ViewBag.DateSortParm})
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.LocationPro)
+            Pros
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.LocationCon)
+            Cons
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.LocationReviewDetails)
+            Review Details
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Location.LocationName)
+            @Html.ActionLink("Location", "Index", new { sortOrder = ViewBag.LocationSortParm})
         </th>
         <th></th>
     </tr>

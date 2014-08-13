@@ -11,17 +11,38 @@ namespace miVacationSurfer
 {
     using System;
     using System.Collections.Generic;
-
+    using System.ComponentModel.DataAnnotations;
+    
     public partial class ActivityReview
     {
         public int Id { get; set; }
-        public int ActivityRating { get; set; }
-        public System.DateTime ActivityDate { get; set; }
-        public string ActivityPro { get; set; }
-        public string ActivityCon { get; set; }
-        public string ActivityReviewDetails { get; set; }
-        public int ActivityId { get; set; }
 
+        [Required]
+        [Display(Name = "Rating")]
+        public int ActivityRating { get; set; }
+
+        [Required]
+        [Display(Name = "Date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public System.DateTime ActivityDate { get; set; }
+
+        [Required]
+        [Display(Name = "Pros")]
+        public string ActivityPro { get; set; }
+
+        [Required]
+        [Display(Name = "Cons")]
+        public string ActivityCon { get; set; }
+
+        [Required]
+        [Display(Name = "Details")]
+        public string ActivityReviewDetails { get; set; }
+
+        [Required]
+        [Display(Name = "Activity")]
+        public int ActivityId { get; set; }
+    
         public virtual Activity Activity { get; set; }
         public virtual List<Season> Seasons { get; set; }
         public virtual List<ActivityType> ActivityTypes { get; set; }

@@ -1,0 +1,32 @@
+﻿.wrapper{
+    width:450px;
+    margin:0 auto;
+}
+
+
+#slideshow{
+    width: 1140px;
+    height:340px;
+    overflow: hidden;
+    margin: 30px auto;
+
+}
+
+
+#slideshow > img{
+    width: 1140px;
+    height:340px;
+    float:left;
+    display:none;
+}
+
+#black
+{
+    color: black
+}
+/*a{
+    padding: 5px 10px;
+    background-color: aqua;
+    margin-top: 30px;
+}*/
+
